@@ -1,12 +1,11 @@
 <script>
 import {defineComponent} from 'vue'
 
-import router from "@/router";
+import router from '@/router';
 
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters} from 'vuex';
 
 export default defineComponent({
-    name: "LoginView",
     data(){
         return{
             inputLogin: '',
@@ -14,14 +13,13 @@ export default defineComponent({
         }
 
     },
-    computed: mapGetters(["GET_TOKEN"]),
+    computed: mapGetters(["getToken"]),
     methods: {
         ...mapActions(["onLogin"]),
         async btnAuth() {
             await this.onLogin([this.inputLogin, this.inputPassword])
-            if (this.GET_TOKEN){
+            if (this.getToken){
                 await router.push('/')
-                console.log(this.GET_TOKEN)
             }
         }
     }
@@ -42,17 +40,23 @@ export default defineComponent({
                 <label>
                     <button @click="btnAuth">Войти</button>
                 </label>
-                <p class="reg_p">Если у вас нет аккаунта, то можно создать <router-link to="/reg">тут</router-link></p>
+                <p class="reg_p">
+                    Если у вас нет аккаунта, то можно создать
+                    <router-link to="/reg">тут</router-link>
+                </p>
             </form>
         </div>
     </div>
 </template>
 
 <style scoped>
+.pop-container{
+    height: 100%;
+    margin: auto;
+}
 .reg_p{
     font-size: 18px;
     margin: 10px auto;
-    width: 330px;
     color: rgba(0 ,0, 0, .4);
 }
 .reg_p a{
@@ -63,29 +67,19 @@ export default defineComponent({
 .reg_p a:hover{
     color: rgba(0 ,135, 170, 1);
 }
-.pop-container{
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
 .pop_body{
-    margin: auto;
-    width: 500px;
     background-color: white;
     border-radius: 15px;
     text-align: center;
-    padding:  60px 15px 60px 15px;
-    position: relative;
 }
 .pop_body p{
-    font-size: 28px;
+    font-size: 18px;
     font-weight: 500;
     color: black;
 }
 .pop_body input{
     display: block;
     margin: 0 auto 25px auto;
-    width: 330px;
     padding: 17px 20px;
     border-radius: 15px;
     border: none;
@@ -95,10 +89,8 @@ export default defineComponent({
     background-color: #e3e3e3;
 }
 .pop_body button{
-    display: block;
-    width: 330px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 40px;
     font-weight: 500;
     font-size: 16px;
     border: none;

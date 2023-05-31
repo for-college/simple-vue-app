@@ -51,7 +51,7 @@ export default defineComponent({
 
 <style scoped>
 .card{
-    width: 250px;
+    max-width: 250px;
     border:  1px solid #ccc;
     display: flex;
     align-items: center;

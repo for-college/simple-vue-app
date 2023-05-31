@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+
 import router from '@/router/index'
 
 import store from '@/store';

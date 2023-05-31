@@ -18,7 +18,7 @@ export default {
         async onLogin({commit}, [login, password]) {
             try {
                 const res = await fetch('http://192.168.13.0/public/api/login', {
-                    method: 'post',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -30,7 +30,7 @@ export default {
                 const auth = await res.json()
 
                 if (auth.data) {
-                    commit('SET_TOKEN', auth.data.user_token)
+                    commit('setToken', auth.data.user_token)
                 }
             }
             catch (err) {
@@ -39,12 +39,12 @@ export default {
         }
     },
     mutations: {
-        SET_TOKEN(state, token) {
+        setToken(state, token) {
             state.token = token
             localStorage.setItem('token', token)
         }
     },
     getters: {
-        GET_TOKEN: state => state.token
+        getToken: state => state.token
     }
 }
