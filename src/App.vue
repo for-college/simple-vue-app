@@ -7,10 +7,15 @@
 
 <script>
 import TheHeader from '@/components/TheHeader.vue'
+import {mapActions} from "vuex";
 export default {
     name: 'App',
     components: {
         TheHeader
+    },
+    methods: mapActions(['getUserInfoFromApi']),
+    async mounted() {
+        await this.getUserInfoFromApi()
     }
 }
 </script>
@@ -27,6 +32,6 @@ export default {
     .page{
         max-width: 1200px;
         margin: 0 auto;
-        padding: 10px 10px;
+        padding: 20px
     }
 </style>

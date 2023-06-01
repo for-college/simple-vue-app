@@ -3,11 +3,15 @@ export default {
         products: [] // переименовал product в products для соответствия множественному числу
     },
     actions: {
-        async getProductsFromApi({ commit }, category = null) { // переименовал метод и параметр для удобочитаемости
+        async getProductsFromApi({ commit = null }, category = null) {
             try {
-                const url = `http://192.168.13.0/public/api/product${category ? '/category/' + category : ''}` // использование шаблонных строк для лучшей читаемости
-                const res = await fetch(url, { method: 'GET' });
-                const { data } = await res.json(); // деструктуризация для получения только data из ответа сервера
+                // использование шаблонных строк для лучшей читаемости
+                const url = `http://192.168.13.0/public/api/product${category ? '/category/' + category : ''}`
+                const res = await fetch(url, {
+                    method: 'GET'
+                });
+                // деструктуризация для получения только data из ответа сервера
+                const { data } = await res.json();
                 commit('setProductToState', data);
             } catch (error) {
                 console.error(error);

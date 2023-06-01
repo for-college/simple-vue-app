@@ -4,7 +4,7 @@ import {mapGetters} from 'vuex';
 
 export default defineComponent({
     name: 'TheHeader',
-    computed: mapGetters(['getToken'])
+    computed: mapGetters(['getToken', 'getUser'])
 })
 </script>
 
@@ -33,8 +33,11 @@ export default defineComponent({
           </ul>
       </nav>
 
-      <router-link v-if="!getToken" to="/auth">
-          <button class="btn_auth">Войти</button>
+      <router-link v-if="!getToken" to="/auth" class="btn_auth">
+          Войти
+      </router-link>
+      <router-link v-if="getToken" to="/profile" class="btn_auth">
+          Здравствуйте, {{getUser.name}}
       </router-link>
   </header>
 </template>

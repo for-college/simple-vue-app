@@ -13,9 +13,9 @@ export default defineComponent({
         }
 
     },
-    computed: mapGetters(["getToken"]),
+    computed: mapGetters(['getToken']),
     methods: {
-        ...mapActions(["onLogin"]),
+        ...mapActions(['onLogin']),
         async btnAuth() {
             await this.onLogin([this.inputLogin, this.inputPassword])
             if (this.getToken){

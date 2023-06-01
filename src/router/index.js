@@ -1,27 +1,37 @@
-import {createRouter, createWebHistory} from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '@/views/HomeView.vue';
-import ProductView from '@/views/ProductView.vue';
+import ProfileView from '@/views/ProfileView.vue';
 import LoginView from '@/views/LoginView.vue';
+import RegistrationView from '@/views/RegistrationView.vue';
+import AddProductView from '@/views/AddProductView.vue';
 
-const routes = [
+const routes =[
     {
         path: '/',
-        component: HomeView,
+        component: HomeView
     },
     {
-        path: '/product',
-        component: ProductView,
+        path: '/profile',
+        component: ProfileView
     },
     {
-        path: '/auth',
-        component: LoginView,
+        path: "/auth",
+        component: LoginView
     },
+    {
+        path: "/reg",
+        component: RegistrationView
+    },
+    {
+        path: "/add_product",
+        component: AddProductView
+    }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
-})
+});
 
 export default router;

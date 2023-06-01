@@ -4,14 +4,13 @@ export default {
         role: null,
         user:{
             'id': '',
-            "name": '',
-            "surname": '',
-            "patronymic": '',
-            "telephone": '',
-            "login": '',
-            "group": '',
-            "photo": '',
-
+            'name': '',
+            'surname': '',
+            'patronymic': '',
+            'telephone': '',
+            'login': '',
+            'group': '',
+            'photo': '',
         }
     },
     actions: {
@@ -36,15 +35,49 @@ export default {
             catch (err) {
                 console.log(err)
             }
+        },
+        async getUserInfoFromApi({commit, state}){
+            try {
+                console.log(state.token)
+                const res = await fetch(`http://192.168.13.0/public/api/info`,{
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${state.token}`,
+                    }
+
+
+                })
+                const { data } = await res.json()
+
+                commit('setUser', data[0])
+            }
+            catch (error){
+                console.log(error)
+            }
         }
     },
     mutations: {
         setToken(state, token) {
             state.token = token
             localStorage.setItem('token', token)
+        },
+        setUser(state, user) {
+            const base_url = 'http://192.168.13.0/storage/app/public/images/users/'
+            state.user = {
+                "id": user.id,
+                "name": user.name,
+                "surname": user.surname,
+                "patronymic": user.patronymic,
+                "telephone": user.telephone,
+                "login": user.login,
+                "group": user.group,
+                "photo": base_url + (user.photo ? user.photo : 'default.png'),
+            }
         }
     },
     getters: {
-        getToken: state => state.token
+        getToken: state => state.token,
+        getUser: state => state.user
     }
 }
