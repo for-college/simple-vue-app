@@ -16,15 +16,15 @@ const routes =[
         component: ProfileView
     },
     {
-        path: "/auth",
+        path: '/auth',
         component: LoginView
     },
     {
-        path: "/reg",
+        path: '/reg',
         component: RegistrationView
     },
     {
-        path: "/add_product",
+        path: '/add_product',
         component: AddProductView
     }
 ]

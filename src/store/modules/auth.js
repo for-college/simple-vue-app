@@ -38,15 +38,12 @@ export default {
         },
         async getUserInfoFromApi({commit, state}){
             try {
-                console.log(state.token)
                 const res = await fetch(`http://192.168.13.0/public/api/info`,{
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${state.token}`,
                     }
-
-
                 })
                 const { data } = await res.json()
 
@@ -65,14 +62,14 @@ export default {
         setUser(state, user) {
             const base_url = 'http://192.168.13.0/storage/app/public/images/users/'
             state.user = {
-                "id": user.id,
-                "name": user.name,
-                "surname": user.surname,
-                "patronymic": user.patronymic,
-                "telephone": user.telephone,
-                "login": user.login,
-                "group": user.group,
-                "photo": base_url + (user.photo ? user.photo : 'default.png'),
+                'id': user.id,
+                'name': user.name,
+                'surname': user.surname,
+                'patronymic': user.patronymic,
+                'telephone': user.telephone,
+                'login': user.login,
+                'group': user.group,
+                'photo': `${base_url}${user.photo || 'default.png'}`,
             }
         }
     },

@@ -13,7 +13,7 @@ export default {
         ]) {
             try {
                 const res = await fetch('http://192.168.13.0/public/api/reg', {
-                    method: 'POTS',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -37,7 +37,7 @@ export default {
                 console.log(reg);
             }
             catch (error) {
-                console.log(error)
+                console.error(error)
             }
         }
     },

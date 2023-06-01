@@ -1,9 +1,9 @@
 export default {
     state: {
-        products: [] // переименовал product в products для соответствия множественному числу
+        products: []
     },
     actions: {
-        async getProductsFromApi({ commit = null }, category = null) {
+        async getProductsFromApi({ commit }, category = null) {
             try {
                 // использование шаблонных строк для лучшей читаемости
                 const url = `http://192.168.13.0/public/api/product${category ? '/category/' + category : ''}`
